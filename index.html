@@ -1,1 +1,206 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Card-based Navigation</title>\n    <style>\n        body {\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            font-family: Arial, sans-serif;\n            background-color: #f3f4f6;\n        }\n        .card {\n            background: white;\n            border-radius: 10px;\n            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n            padding: 20px;\n            margin: 10px;\n            text-align: center;\n            width: 200px;\n            transition: transform 0.2s;\n        }\n        .card:hover {\n            transform: scale(1.05);\n        }\n        .container {\n            display: flex;\n            flex-wrap: wrap;\n            justify-content: center;\n        }\n    </style>\n</head>\n<body>\n    <div class="container">\n        <div class="card">\n            <h3>Math Topics</h3>\n            <p>Explore different areas of mathematics.</p>\n            <a href="#" style="text-decoration: none; color: blue;">Learn More</a>\n        </div>\n        <div class="card">\n            <h3>Calculators</h3>\n            <p>Use various calculators for fast computations.</p>\n            <a href="#" style="text-decoration: none; color: blue;">Try Now</a>\n        </div>\n        <div class="card">\n            <h3>Interactive Quizzes</h3>\n            <p>Test your knowledge with quizzes.</p>\n            <a href="#" style="text-decoration: none; color: blue;">Start Quiz</a>\n        </div>\n    </div>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 대시보드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .card-description {
+            color: #718096;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .card-arrow {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            font-size: 1.5rem;
+            color: #667eea;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* 새 카드 추가 버튼 (선택사항) */
+        .add-card {
+            background: rgba(255,255,255,0.2);
+            border: 2px dashed rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            min-height: 200px;
+        }
+
+        .add-card:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.8);
+        }
+
+        .add-icon {
+            font-size: 3rem;
+            color: white;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 프로젝트 대시보드</h1>
+            <p class="subtitle">원하는 프로젝트를 선택하세요</p>
+        </header>
+
+        <div class="card-grid">
+            <!-- Card 1: Ant -->
+            <a href="Ant.html" class="card">
+                <div class="card-icon">🐜</div>
+                <h2 class="card-title">Ant</h2>
+                <p class="card-description">
+                    개미 시뮬레이션 프로젝트를 확인하세요.
+                </p>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <!-- Card 2: Hill -->
+            <a href="Hill.html" class="card">
+                <div class="card-icon">⛰️</div>
+                <h2 class="card-title">Hill</h2>
+                <p class="card-description">
+                    언덕 프로젝트를 확인하세요.
+                </p>
+                <span class="card-arrow">→</span>
+            </a>
+
+            <!-- 새 카드 추가 예시 (주석 해제하여 사용) -->
+            <!--
+            <a href="NewProject.html" class="card">
+                <div class="card-icon">🎯</div>
+                <h2 class="card-title">New Project</h2>
+                <p class="card-description">
+                    새로운 프로젝트에 대한 설명을 입력하세요.
+                </p>
+                <span class="card-arrow">→</span>
+            </a>
+            -->
+        </div>
+    </div>
+</body>
+</html>
